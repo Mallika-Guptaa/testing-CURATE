@@ -1,0 +1,278 @@
+{
+  "FunctionInvoke": "load-dataset-ca95e860",
+  "WorkflowName": "correlation-regression-base",
+  "DefaultDataStore": "S3",
+  "LoggingDataStore": "S3",
+  "FaaSrLog": "FaaSrLog",
+  "InvocationIDFromDate": "%Y-%m-%d-%H-%M-%S",
+  "ActionList": {
+    "load-dataset-ca95e860": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "load_dataset_ca95e860",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "input-ca95e860-data-sites_vwc_corrected.csv",
+        "input2": "workflow-config.json",
+        "output1": "load-dataset-ca95e860-data_parquet.parquet",
+        "output2": "load-dataset-ca95e860-data_csv.csv",
+        "output3": "load-dataset-ca95e860-summary_json.json",
+        "output4": "load-dataset-ca95e860-visualization_json.json",
+        "output5": "load-dataset-ca95e860-visualization_png.png",
+        "output6": "load-dataset-ca95e860-provenance_json.json",
+        "output7": "load-dataset-ca95e860-processing_report.md",
+        "output8": "load-dataset-ca95e860-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "canonicalize-dataset-6154a693"
+      ]
+    },
+    "canonicalize-dataset-6154a693": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "canonicalize_dataset_6154a693",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "load-dataset-ca95e860-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "canonicalize-dataset-6154a693-data_parquet.parquet",
+        "output2": "canonicalize-dataset-6154a693-data_csv.csv",
+        "output3": "canonicalize-dataset-6154a693-summary_json.json",
+        "output4": "canonicalize-dataset-6154a693-visualization_json.json",
+        "output5": "canonicalize-dataset-6154a693-visualization_png.png",
+        "output6": "canonicalize-dataset-6154a693-provenance_json.json",
+        "output7": "canonicalize-dataset-6154a693-processing_report.md",
+        "output8": "canonicalize-dataset-6154a693-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "pearson-correlation-0bbe9c5c"
+      ]
+    },
+    "pearson-correlation-0bbe9c5c": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "pearson_correlation_0bbe9c5c",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "canonicalize-dataset-6154a693-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "pearson-correlation-0bbe9c5c-data_parquet.parquet",
+        "output2": "pearson-correlation-0bbe9c5c-data_csv.csv",
+        "output3": "pearson-correlation-0bbe9c5c-summary_json.json",
+        "output4": "pearson-correlation-0bbe9c5c-visualization_json.json",
+        "output5": "pearson-correlation-0bbe9c5c-visualization_png.png",
+        "output6": "pearson-correlation-0bbe9c5c-provenance_json.json",
+        "output7": "pearson-correlation-0bbe9c5c-processing_report.md",
+        "output8": "pearson-correlation-0bbe9c5c-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "multiple-regression-3130e2e6"
+      ]
+    },
+    "multiple-regression-3130e2e6": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "multiple_regression_3130e2e6",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "pearson-correlation-0bbe9c5c-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "multiple-regression-3130e2e6-data_parquet.parquet",
+        "output2": "multiple-regression-3130e2e6-data_csv.csv",
+        "output3": "multiple-regression-3130e2e6-summary_json.json",
+        "output4": "multiple-regression-3130e2e6-visualization_json.json",
+        "output5": "multiple-regression-3130e2e6-visualization_png.png",
+        "output6": "multiple-regression-3130e2e6-provenance_json.json",
+        "output7": "multiple-regression-3130e2e6-processing_report.md",
+        "output8": "multiple-regression-3130e2e6-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "regression-diagnostics-a86bd74b"
+      ]
+    },
+    "regression-diagnostics-a86bd74b": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "regression_diagnostics_a86bd74b",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "multiple-regression-3130e2e6-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "regression-diagnostics-a86bd74b-data_parquet.parquet",
+        "output2": "regression-diagnostics-a86bd74b-data_csv.csv",
+        "output3": "regression-diagnostics-a86bd74b-summary_json.json",
+        "output4": "regression-diagnostics-a86bd74b-visualization_json.json",
+        "output5": "regression-diagnostics-a86bd74b-visualization_png.png",
+        "output6": "regression-diagnostics-a86bd74b-provenance_json.json",
+        "output7": "regression-diagnostics-a86bd74b-processing_report.md",
+        "output8": "regression-diagnostics-a86bd74b-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "confidence-intervals-7a043dea"
+      ]
+    },
+    "confidence-intervals-7a043dea": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "confidence_intervals_7a043dea",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "regression-diagnostics-a86bd74b-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "confidence-intervals-7a043dea-data_parquet.parquet",
+        "output2": "confidence-intervals-7a043dea-data_csv.csv",
+        "output3": "confidence-intervals-7a043dea-summary_json.json",
+        "output4": "confidence-intervals-7a043dea-visualization_json.json",
+        "output5": "confidence-intervals-7a043dea-visualization_png.png",
+        "output6": "confidence-intervals-7a043dea-provenance_json.json",
+        "output7": "confidence-intervals-7a043dea-processing_report.md",
+        "output8": "confidence-intervals-7a043dea-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "residual-analysis-0f7dd1ea"
+      ]
+    },
+    "residual-analysis-0f7dd1ea": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "residual_analysis_0f7dd1ea",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "confidence-intervals-7a043dea-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "residual-analysis-0f7dd1ea-data_parquet.parquet",
+        "output2": "residual-analysis-0f7dd1ea-data_csv.csv",
+        "output3": "residual-analysis-0f7dd1ea-summary_json.json",
+        "output4": "residual-analysis-0f7dd1ea-visualization_json.json",
+        "output5": "residual-analysis-0f7dd1ea-visualization_png.png",
+        "output6": "residual-analysis-0f7dd1ea-provenance_json.json",
+        "output7": "residual-analysis-0f7dd1ea-processing_report.md",
+        "output8": "residual-analysis-0f7dd1ea-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "export-results-bc12fc2b"
+      ]
+    },
+    "export-results-bc12fc2b": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "export_results_bc12fc2b",
+      "Arguments": {
+        "folder": "curate-soil-studio/4e2fa01f-c387-508d-b266-c0b342fb4ad8/c16d5dff-0549-4025-bbfc-aa9f3bd5f3f8/base",
+        "input1": "residual-analysis-0f7dd1ea-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "export-results-bc12fc2b-data_parquet.parquet",
+        "output2": "export-results-bc12fc2b-data_csv.csv",
+        "output3": "export-results-bc12fc2b-summary_json.json",
+        "output4": "export-results-bc12fc2b-visualization_json.json",
+        "output5": "export-results-bc12fc2b-visualization_png.png",
+        "output6": "export-results-bc12fc2b-provenance_json.json",
+        "output7": "export-results-bc12fc2b-processing_report.md",
+        "output8": "export-results-bc12fc2b-map_geojson.geojson",
+        "output9": "export-results-bc12fc2b-data_netcdf.nc",
+        "output10": "export-results-bc12fc2b-result_bundle.zip"
+      },
+      "InvokeNext": []
+    }
+  },
+  "ActionContainers": {
+    "load-dataset-ca95e860": "ghcr.io/faasr/github-actions-python:latest",
+    "canonicalize-dataset-6154a693": "ghcr.io/faasr/github-actions-python:latest",
+    "pearson-correlation-0bbe9c5c": "ghcr.io/faasr/github-actions-python:latest",
+    "multiple-regression-3130e2e6": "ghcr.io/faasr/github-actions-python:latest",
+    "regression-diagnostics-a86bd74b": "ghcr.io/faasr/github-actions-python:latest",
+    "confidence-intervals-7a043dea": "ghcr.io/faasr/github-actions-python:latest",
+    "residual-analysis-0f7dd1ea": "ghcr.io/faasr/github-actions-python:latest",
+    "export-results-bc12fc2b": "ghcr.io/faasr/github-actions-python:latest"
+  },
+  "ComputeServers": {
+    "GH": {
+      "FaaSType": "GitHubActions",
+      "UserName": "Mallika-Guptaa",
+      "ActionRepoName": "testing-CURATE",
+      "Branch": "main",
+      "UseSecretStore": true
+    }
+  },
+  "DataStores": {
+    "S3": {
+      "Endpoint": "https://s3.amazonaws.com",
+      "Bucket": "faasr-bucket-smarttap-private",
+      "Region": "us-east-1",
+      "AccessKey": "S3_AccessKey",
+      "SecretKey": "S3_SecretKey",
+      "Writable": "TRUE"
+    }
+  },
+  "FunctionGitRepo": {
+    "load_dataset_ca95e860": "Mallika-Guptaa/testing-CURATE/main/functions/load_dataset_ca95e860.py",
+    "canonicalize_dataset_6154a693": "Mallika-Guptaa/testing-CURATE/main/functions/canonicalize_dataset_6154a693.py",
+    "pearson_correlation_0bbe9c5c": "Mallika-Guptaa/testing-CURATE/main/functions/pearson_correlation_0bbe9c5c.py",
+    "multiple_regression_3130e2e6": "Mallika-Guptaa/testing-CURATE/main/functions/multiple_regression_3130e2e6.py",
+    "regression_diagnostics_a86bd74b": "Mallika-Guptaa/testing-CURATE/main/functions/regression_diagnostics_a86bd74b.py",
+    "confidence_intervals_7a043dea": "Mallika-Guptaa/testing-CURATE/main/functions/confidence_intervals_7a043dea.py",
+    "residual_analysis_0f7dd1ea": "Mallika-Guptaa/testing-CURATE/main/functions/residual_analysis_0f7dd1ea.py",
+    "export_results_bc12fc2b": "Mallika-Guptaa/testing-CURATE/main/functions/export_results_bc12fc2b.py"
+  },
+  "PyPIPackageDownloads": {
+    "load_dataset_ca95e860": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib",
+      "openpyxl",
+      "xlrd",
+      "xarray",
+      "netcdf4",
+      "scipy",
+      "h5py",
+      "rasterio"
+    ],
+    "canonicalize_dataset_6154a693": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib"
+    ],
+    "pearson_correlation_0bbe9c5c": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib"
+    ],
+    "multiple_regression_3130e2e6": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib",
+      "statsmodels"
+    ],
+    "regression_diagnostics_a86bd74b": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib"
+    ],
+    "confidence_intervals_7a043dea": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib",
+      "scipy"
+    ],
+    "residual_analysis_0f7dd1ea": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib"
+    ],
+    "export_results_bc12fc2b": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib",
+      "xarray",
+      "netcdf4"
+    ]
+  }
+}
