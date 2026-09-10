@@ -1062,7 +1062,9 @@ def _execute(action_slug, node_id, action_title, folder, input_names, output_nam
         generated["result_bundle"] = path
     for key, path in generated.items(): _upload(folder, path, output_names[key])
     _log(f"{action_title}: wrote {len(generated)} artifacts and {len(frame)} rows")
-    return {"rows": len(frame), "artifacts": list(generated)}
+    # FaaSr's RPC return contract accepts only bool or None. Detailed action results
+    # are already persisted in the summary/provenance artifacts and emitted above.
+    return True
 
 
 # The Studio compiler replaces this marker with a node-specific FaaSr entry point.
