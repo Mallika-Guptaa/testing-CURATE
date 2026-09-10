@@ -1,34 +1,22 @@
-def generate_function_points(folder: str, input1: str, output1: str) -> None:
-    """Generate 20 data points for y = 2x + 3 and save as CSV."""
+def generate_function_points(folder: str, output1: str) -> None:
+    import numpy as np
     import pandas as pd
-    import json
+    import tempfile
     import os
 
-    faasr_log("Starting generate_function_points")
+    faasr_log("Generating 40 points for y = 20x + 33")
 
-    config_local = "workflow_config_local.json"
-    faasr_get_file(local_file=config_local, remote_folder=folder, remote_file=input1)
+    x = np.arange(1, 41, dtype=float)
+    y = 20 * x + 33
 
-    with open(config_local, "r") as f:
-        config = json.load(f)
+    df = pd.DataFrame({"x": x, "y": y})
 
-    faasr_log(f"Loaded config: {config}")
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as tmp:
+        tmp_path = tmp.name
+        df.to_csv(tmp_path, index=False)
 
-    x_values = list(range(1, 21))
-    y_values = [2 * x + 3 for x in x_values]
-
-    df = pd.DataFrame({"x": x_values, "y": y_values})
-
-    local_output = "function_points_local.csv"
-    df.to_csv(local_output, index=False)
-
-    faasr_log(f"Generated {len(df)} data points for y = 2x + 3")
-
-    faasr_put_file(local_file=local_output, remote_folder=folder, remote_file=output1)
-
-    if os.path.exists(config_local):
-        os.remove(config_local)
-    if os.path.exists(local_output):
-        os.remove(local_output)
-
-    faasr_log("generate_function_points complete")
+    try:
+        faasr_put_file(local_file=tmp_path, remote_folder=folder, remote_file=output1)
+        faasr_log(f"Saved {len(df)} points to {output1}")
+    finally:
+        os.unlink(tmp_path)
