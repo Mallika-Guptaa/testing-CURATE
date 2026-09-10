@@ -1,17 +1,17 @@
 {
-  "FunctionInvoke": "generate-function-points",
+  "FunctionInvoke": "generate-points",
   "WorkflowName": "linear-function-plot",
   "DefaultDataStore": "S3",
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
   "InvocationIDFromDate": "%Y-%m-%d-%H-%M-%S",
   "ActionList": {
-    "generate-function-points": {
+    "generate-points": {
       "FaaSServer": "GH",
       "Type": "Python",
-      "FunctionName": "generate_function_points",
+      "FunctionName": "generate_points",
       "Arguments": {
-        "folder": "curate-soil-studio/4297a3a7-4a8d-4816-9148-0cff257fd42a/438c8fce-868a-41e3-86c3-e86e4209ad92/base",
+        "folder": "curate-soil-studio/c867178a-2366-4fd3-8db5-32377c9b6f05/eacb92a6-16e1-447c-b1a5-43da24f14513/base",
         "input1": "workflow-config.json",
         "output1": "function_points.csv"
       },
@@ -24,7 +24,7 @@
       "Type": "Python",
       "FunctionName": "create_line_plot",
       "Arguments": {
-        "folder": "curate-soil-studio/4297a3a7-4a8d-4816-9148-0cff257fd42a/438c8fce-868a-41e3-86c3-e86e4209ad92/base",
+        "folder": "curate-soil-studio/c867178a-2366-4fd3-8db5-32377c9b6f05/eacb92a6-16e1-447c-b1a5-43da24f14513/base",
         "input1": "function_points.csv",
         "input2": "workflow-config.json",
         "output1": "function_line_plot.png"
@@ -33,7 +33,7 @@
     }
   },
   "ActionContainers": {
-    "generate-function-points": "ghcr.io/faasr/github-actions-python:latest",
+    "generate-points": "ghcr.io/faasr/github-actions-python:latest",
     "create-line-plot": "ghcr.io/faasr/github-actions-python:latest"
   },
   "ComputeServers": {
@@ -56,11 +56,11 @@
     }
   },
   "FunctionGitRepo": {
-    "generate_function_points": "Mallika-Guptaa/testing-CURATE/main/functions/generate_function_points.py",
+    "generate_points": "Mallika-Guptaa/testing-CURATE/main/functions/generate_points.py",
     "create_line_plot": "Mallika-Guptaa/testing-CURATE/main/functions/create_line_plot.py"
   },
   "PyPIPackageDownloads": {
-    "generate_function_points": [
+    "generate_points": [
       "pandas"
     ],
     "create_line_plot": [
