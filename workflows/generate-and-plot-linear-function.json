@@ -1,0 +1,71 @@
+{
+  "FunctionInvoke": "generate-function-points",
+  "WorkflowName": "generate-and-plot-linear-function",
+  "DefaultDataStore": "S3",
+  "LoggingDataStore": "S3",
+  "FaaSrLog": "FaaSrLog",
+  "InvocationIDFromDate": "%Y-%m-%d-%H-%M-%S",
+  "ActionList": {
+    "generate-function-points": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "generate_function_points",
+      "Arguments": {
+        "folder": "curate-soil-studio/eea8951e-82f9-4612-b8b3-8d4657390533/1933f043-9d08-43ca-9c34-5586b0db2bd7/base",
+        "output1": "function_points.csv"
+      },
+      "InvokeNext": [
+        "plot-function-line"
+      ]
+    },
+    "plot-function-line": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "plot_function_line",
+      "Arguments": {
+        "folder": "curate-soil-studio/eea8951e-82f9-4612-b8b3-8d4657390533/1933f043-9d08-43ca-9c34-5586b0db2bd7/base",
+        "input1": "function_points.csv",
+        "input2": "workflow-config.json",
+        "output1": "function_line_plot.png"
+      },
+      "InvokeNext": []
+    }
+  },
+  "ActionContainers": {
+    "generate-function-points": "ghcr.io/faasr/github-actions-python:latest",
+    "plot-function-line": "ghcr.io/faasr/github-actions-python:latest"
+  },
+  "ComputeServers": {
+    "GH": {
+      "FaaSType": "GitHubActions",
+      "UserName": "Mallika-Guptaa",
+      "ActionRepoName": "testing-CURATE",
+      "Branch": "main",
+      "UseSecretStore": true
+    }
+  },
+  "DataStores": {
+    "S3": {
+      "Endpoint": "https://s3.amazonaws.com",
+      "Bucket": "faasr-bucket-smarttap-private",
+      "Region": "us-east-1",
+      "AccessKey": "S3_AccessKey",
+      "SecretKey": "S3_SecretKey",
+      "Writable": "TRUE"
+    }
+  },
+  "FunctionGitRepo": {
+    "generate_function_points": "Mallika-Guptaa/testing-CURATE/main/functions/generate_function_points.py",
+    "plot_function_line": "Mallika-Guptaa/testing-CURATE/main/functions/plot_function_line.py"
+  },
+  "PyPIPackageDownloads": {
+    "generate_function_points": [
+      "pandas",
+      "numpy"
+    ],
+    "plot_function_line": [
+      "matplotlib",
+      "pandas"
+    ]
+  }
+}
