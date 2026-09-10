@@ -1,0 +1,71 @@
+{
+  "FunctionInvoke": "generate-function-points",
+  "WorkflowName": "linear-function-plot",
+  "DefaultDataStore": "S3",
+  "LoggingDataStore": "S3",
+  "FaaSrLog": "FaaSrLog",
+  "InvocationIDFromDate": "%Y-%m-%d-%H-%M-%S",
+  "ActionList": {
+    "generate-function-points": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "generate_function_points",
+      "Arguments": {
+        "folder": "curate-soil-studio/4297a3a7-4a8d-4816-9148-0cff257fd42a/438c8fce-868a-41e3-86c3-e86e4209ad92/base",
+        "input1": "workflow-config.json",
+        "output1": "function_points.csv"
+      },
+      "InvokeNext": [
+        "create-line-plot"
+      ]
+    },
+    "create-line-plot": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "create_line_plot",
+      "Arguments": {
+        "folder": "curate-soil-studio/4297a3a7-4a8d-4816-9148-0cff257fd42a/438c8fce-868a-41e3-86c3-e86e4209ad92/base",
+        "input1": "function_points.csv",
+        "input2": "workflow-config.json",
+        "output1": "function_line_plot.png"
+      },
+      "InvokeNext": []
+    }
+  },
+  "ActionContainers": {
+    "generate-function-points": "ghcr.io/faasr/github-actions-python:latest",
+    "create-line-plot": "ghcr.io/faasr/github-actions-python:latest"
+  },
+  "ComputeServers": {
+    "GH": {
+      "FaaSType": "GitHubActions",
+      "UserName": "Mallika-Guptaa",
+      "ActionRepoName": "testing-CURATE",
+      "Branch": "main",
+      "UseSecretStore": true
+    }
+  },
+  "DataStores": {
+    "S3": {
+      "Endpoint": "https://s3.amazonaws.com",
+      "Bucket": "faasr-bucket-smarttap-private",
+      "Region": "us-east-1",
+      "AccessKey": "S3_AccessKey",
+      "SecretKey": "S3_SecretKey",
+      "Writable": "TRUE"
+    }
+  },
+  "FunctionGitRepo": {
+    "generate_function_points": "Mallika-Guptaa/testing-CURATE/main/functions/generate_function_points.py",
+    "create_line_plot": "Mallika-Guptaa/testing-CURATE/main/functions/create_line_plot.py"
+  },
+  "PyPIPackageDownloads": {
+    "generate_function_points": [
+      "pandas"
+    ],
+    "create_line_plot": [
+      "pandas",
+      "matplotlib"
+    ]
+  }
+}
