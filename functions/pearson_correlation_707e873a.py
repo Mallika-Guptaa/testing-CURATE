@@ -1071,3 +1071,6 @@ def _execute(action_slug, node_id, action_title, folder, input_names, output_nam
 def pearson_correlation_707e873a(folder: str, input1: str, input2: str, output1: str, output2: str, output3: str, output4: str, output5: str, output6: str, output7: str, output8: str) -> None:
     _execute("pearson-correlation", "pearson_correlation_707e873a", "Pearson correlation", folder, [input1, input2], {"data_parquet": output1, "data_csv": output2, "summary_json": output3, "visualization_json": output4, "visualization_png": output5, "provenance_json": output6, "processing_report": output7, "map_geojson": output8})
 
+
+def pearson_correlation(folder, input1, input2, output1, output2, output3, output4, output5, output6, output7, output8):
+    return pearson_correlation_707e873a(folder, input1, input2, output1, output2, output3, output4, output5, output6, output7, output8)
