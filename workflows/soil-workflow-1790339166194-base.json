@@ -11,7 +11,7 @@
       "Type": "Python",
       "FunctionName": "load_dataset_f162b9af",
       "Arguments": {
-        "folder": "curate-soil-studio/163c5ce3-67a0-46cf-9a32-c3430a3bbb5a/46322a4c-d4c1-49e5-8a52-ca90166b92b1/base",
+        "folder": "curate-soil-studio/163c5ce3-67a0-46cf-9a32-c3430a3bbb5a/6fde3e7b-5b71-4255-b978-36a1ad99c23b/base",
         "input1": "input-f162b9af-data-sites_vwc_corrected_.csv",
         "input2": "workflow-config.json",
         "output1": "load-dataset-f162b9af-data_parquet.parquet",
@@ -32,7 +32,7 @@
       "Type": "Python",
       "FunctionName": "pearson_correlation_707e873a",
       "Arguments": {
-        "folder": "curate-soil-studio/163c5ce3-67a0-46cf-9a32-c3430a3bbb5a/46322a4c-d4c1-49e5-8a52-ca90166b92b1/base",
+        "folder": "curate-soil-studio/163c5ce3-67a0-46cf-9a32-c3430a3bbb5a/6fde3e7b-5b71-4255-b978-36a1ad99c23b/base",
         "input1": "load-dataset-f162b9af-data_parquet.parquet",
         "input2": "workflow-config.json",
         "output1": "pearson-correlation-707e873a-data_parquet.parquet",
@@ -79,14 +79,7 @@
       "pandas",
       "numpy",
       "pyarrow",
-      "matplotlib",
-      "openpyxl",
-      "xlrd",
-      "xarray",
-      "netcdf4",
-      "scipy",
-      "h5py",
-      "rasterio"
+      "matplotlib"
     ],
     "pearson_correlation_707e873a": [
       "pandas",
