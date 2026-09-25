@@ -1,0 +1,104 @@
+{
+  "FunctionInvoke": "load-dataset-f162b9af",
+  "WorkflowName": "soil-workflow-1790339166194-base",
+  "DefaultDataStore": "S3",
+  "LoggingDataStore": "S3",
+  "FaaSrLog": "FaaSrLog",
+  "InvocationIDFromDate": "%Y-%m-%d-%H-%M-%S",
+  "ActionList": {
+    "load-dataset-f162b9af": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "load_dataset_f162b9af",
+      "Arguments": {
+        "folder": "curate-soil-studio/163c5ce3-67a0-46cf-9a32-c3430a3bbb5a/46322a4c-d4c1-49e5-8a52-ca90166b92b1/base",
+        "input1": "input-f162b9af-data-sites_vwc_corrected_.csv",
+        "input2": "workflow-config.json",
+        "output1": "load-dataset-f162b9af-data_parquet.parquet",
+        "output2": "load-dataset-f162b9af-data_csv.csv",
+        "output3": "load-dataset-f162b9af-summary_json.json",
+        "output4": "load-dataset-f162b9af-visualization_json.json",
+        "output5": "load-dataset-f162b9af-visualization_png.png",
+        "output6": "load-dataset-f162b9af-provenance_json.json",
+        "output7": "load-dataset-f162b9af-processing_report.md",
+        "output8": "load-dataset-f162b9af-map_geojson.geojson"
+      },
+      "InvokeNext": [
+        "pearson-correlation-707e873a"
+      ]
+    },
+    "pearson-correlation-707e873a": {
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "pearson_correlation_707e873a",
+      "Arguments": {
+        "folder": "curate-soil-studio/163c5ce3-67a0-46cf-9a32-c3430a3bbb5a/46322a4c-d4c1-49e5-8a52-ca90166b92b1/base",
+        "input1": "load-dataset-f162b9af-data_parquet.parquet",
+        "input2": "workflow-config.json",
+        "output1": "pearson-correlation-707e873a-data_parquet.parquet",
+        "output2": "pearson-correlation-707e873a-data_csv.csv",
+        "output3": "pearson-correlation-707e873a-summary_json.json",
+        "output4": "pearson-correlation-707e873a-visualization_json.json",
+        "output5": "pearson-correlation-707e873a-visualization_png.png",
+        "output6": "pearson-correlation-707e873a-provenance_json.json",
+        "output7": "pearson-correlation-707e873a-processing_report.md",
+        "output8": "pearson-correlation-707e873a-map_geojson.geojson"
+      },
+      "InvokeNext": []
+    }
+  },
+  "ActionContainers": {
+    "load-dataset-f162b9af": "ghcr.io/faasr/github-actions-python:latest",
+    "pearson-correlation-707e873a": "ghcr.io/faasr/github-actions-python:latest"
+  },
+  "ComputeServers": {
+    "GH": {
+      "FaaSType": "GitHubActions",
+      "UserName": "Mallika-Guptaa",
+      "ActionRepoName": "testing-CURATE",
+      "Branch": "main",
+      "UseSecretStore": true
+    }
+  },
+  "DataStores": {
+    "S3": {
+      "Endpoint": "https://s3.amazonaws.com",
+      "Bucket": "faasr-bucket-smarttap-private",
+      "Region": "us-east-1",
+      "AccessKey": "S3_AccessKey",
+      "SecretKey": "S3_SecretKey",
+      "Writable": "TRUE"
+    }
+  },
+  "FunctionGitRepo": {
+    "load_dataset_f162b9af": "Mallika-Guptaa/testing-CURATE/main/functions/load_dataset_f162b9af.py",
+    "pearson_correlation_707e873a": "Mallika-Guptaa/testing-CURATE/main/functions/pearson_correlation_707e873a.py"
+  },
+  "PyPIPackageDownloads": {
+    "load_dataset_f162b9af": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib",
+      "openpyxl",
+      "xlrd",
+      "xarray",
+      "netcdf4",
+      "scipy",
+      "h5py",
+      "rasterio"
+    ],
+    "pearson_correlation_707e873a": [
+      "pandas",
+      "numpy",
+      "pyarrow",
+      "matplotlib"
+    ]
+  },
+  "Secrets": [
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "CDS_API_TOKEN",
+    "NOAA_CDO_TOKEN"
+  ]
+}
