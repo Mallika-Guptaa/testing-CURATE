@@ -1067,7 +1067,6 @@ def _execute(action_slug, node_id, action_title, folder, input_names, output_nam
     return True
 
 
-# The Studio compiler replaces this marker with a node-specific FaaSr entry point.
 def load_dataset_f162b9af(folder: str, input1: str, input2: str, output1: str, output2: str, output3: str, output4: str, output5: str, output6: str, output7: str, output8: str) -> None:
-    _execute("load-dataset", "load_dataset_f162b9af", "Load a dataset", folder, [input1, input2], {"data_parquet": output1, "data_csv": output2, "summary_json": output3, "visualization_json": output4, "visualization_png": output5, "provenance_json": output6, "processing_report": output7, "map_geojson": output8})
+    _execute("load-dataset", "load_dataset_f162b9af", "Load Dataset", folder, [input1, input2], {"data_parquet": output1, "data_csv": output2, "summary_json": output3, "visualization_json": output4, "visualization_png": output5, "provenance_json": output6, "processing_report": output7, "map_geojson": output8})
 
